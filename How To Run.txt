@@ -1,0 +1,252 @@
+================================================================================
+                    TEAM IRON CHAMPS - GYM MANAGEMENT SYSTEM
+                            HOW TO RUN THE PROJECT
+================================================================================
+
+This document provides step-by-step instructions on how to run both the 
+Frontend and Backend of the Team Iron Champs Gym Management Application.
+
+================================================================================
+                            PREREQUISITES
+================================================================================
+
+Before running the project, ensure you have the following installed:
+
+1. Java 17 or higher (for Backend)
+   - Download from: https://www.oracle.com/java/technologies/downloads/
+   - Verify: Open Command Prompt and run: java -version
+
+2. Maven (for Backend build and run)
+   - Download from: https://maven.apache.org/download.cgi
+   - Verify: Open Command Prompt and run: mvn -version
+
+3. Python 3.x (for Frontend server)
+   - Download from: https://www.python.org/downloads/
+   - Verify: Open Command Prompt and run: python --version
+
+4. MySQL Database (Must be running)
+   - Database: gym_db
+   - User: root
+   - Password: 19191
+   - Verify: The database should be created and running on localhost:3306
+
+================================================================================
+                          RUNNING THE BACKEND
+================================================================================
+
+STEP 1: Open Command Prompt
+
+STEP 2: Navigate to the backend directory
+   Command: cd d:\programs\gym project\gym
+
+STEP 3: Clean and Compile the Project
+   Command: mvn clean compile
+
+STEP 4: Run the Spring Boot Application
+   Command: mvn spring-boot:run
+
+   The application will start on: http://localhost:8080
+
+   You will see messages like:
+   - "Tomcat started on port 8080 (http) with context path '/'"
+   - "Started GymApplication in X.XXX seconds"
+
+   This means the backend is running successfully!
+
+STEP 5: Keep this terminal window open (Do NOT close it)
+   The backend must keep running while you use the application.
+
+================================================================================
+                          RUNNING THE FRONTEND
+================================================================================
+
+STEP 1: Open a NEW Command Prompt (Keep backend running in the first one)
+
+STEP 2: Navigate to the frontend directory
+   Command: cd d:\programs\gym project\gym-frontend
+
+STEP 3: Start the Python HTTP Server on port 3000
+   Command: python -m http.server 3000
+
+   You will see a message like:
+   - "Serving HTTP on :: port 3000 (http://[::]:3000/) ..."
+
+   This means the frontend server is running successfully!
+
+STEP 4: Keep this terminal window open (Do NOT close it)
+   The frontend server must keep running while you use the application.
+
+================================================================================
+                          ACCESSING THE APPLICATION
+================================================================================
+
+STEP 1: Open your Web Browser (Chrome, Firefox, Edge, etc.)
+
+STEP 2: Go to the URL:
+   http://localhost:3000
+
+   You will be automatically redirected to the login page.
+
+STEP 3: Log in with Demo Credentials:
+   
+   For Admin:
+   - Username: admin
+   - Password: admin123
+   
+   For Reception/Staff:
+   - Username: staff
+   - Password: staff123
+
+STEP 4: After successful login:
+   - You will see the Dashboard with gym statistics
+   - You can navigate between Dashboard, Members, and Payments
+   - Click "Logout" to log out and return to login page
+
+STEP 5: To Register a New User:
+   - On the login page, click the "Register" tab
+   - Enter a new username
+   - Enter a password (minimum 6 characters)
+   - Confirm the password
+   - Select role: Admin or Reception/Staff
+   - Click "Register" button
+   - You will be automatically logged in with the new account
+
+================================================================================
+                          TROUBLESHOOTING GUIDE
+================================================================================
+
+ERROR: "Port 8080 was already in use"
+   Solution: 
+   - Close other applications using port 8080
+   - Or find the process using port 8080 and stop it
+   - Command: netstat -ano | findstr :8080
+
+ERROR: "Failed to load dashboard data"
+   Solution:
+   - Make sure Backend is running (mvn spring-boot:run)
+   - Make sure Frontend is running (python -m http.server 3000)
+   - Check browser console for detailed error messages (Press F12)
+   - Verify both URLs work: 
+     * http://localhost:8080 (should show error or test page)
+     * http://localhost:3000 (should show login page)
+
+ERROR: "Cannot connect to database"
+   Solution:
+   - Make sure MySQL is running
+   - Verify database gym_db exists
+   - Check in application.properties:
+     * mysql://localhost:3306/gym_db
+     * username: root
+     * password: 19191
+
+ERROR: "java: command not found"
+   Solution:
+   - Java is not installed or not in PATH
+   - Install Java from: https://www.oracle.com/java/technologies/downloads/
+   - Add Java to system PATH environment variable
+
+ERROR: "mvn: command not found"
+   Solution:
+   - Maven is not installed or not in PATH
+   - Install Maven from: https://maven.apache.org/download.cgi
+   - Add Maven to system PATH environment variable
+
+ERROR: "python: command not found"
+   Solution:
+   - Python is not installed or not in PATH
+   - Install Python from: https://www.python.org/downloads/
+   - During installation, check "Add Python to PATH"
+
+ERROR: "Port 3000 was already in use"
+   Solution:
+   - Close other applications using port 3000
+   - Or use a different port: python -m http.server 4000
+   - Then access: http://localhost:4000
+
+================================================================================
+                          QUICK START SUMMARY
+================================================================================
+
+TERMINAL 1 (Backend):
+   cd d:\programs\gym project\gym
+   mvn spring-boot:run
+
+TERMINAL 2 (Frontend):
+   cd d:\programs\gym project\gym-frontend
+   python -m http.server 3000
+
+BROWSER:
+   Open: http://localhost:3000
+   Login with: admin / admin123
+
+================================================================================
+                          PROJECT STRUCTURE
+================================================================================
+
+d:\programs\gym project\
+├── gym\                          (Backend - Spring Boot)
+│   ├── src\
+│   │   ├── main\java\
+│   │   └── main\resources\
+│   ├── pom.xml                   (Maven configuration)
+│   └── target\                   (Compiled files)
+│
+└── gym-frontend\                 (Frontend - HTML/CSS/JS)
+    ├── html\
+    │   ├── login.html            (Login & Register page)
+    │   ├── index.html            (Dashboard)
+    │   ├── members.html          (Members management)
+    │   └── payments.html         (Payments management)
+    ├── js\
+    │   ├── api.js                (API calls)
+    │   ├── dashboard.js          (Dashboard logic)
+    │   ├── members.js            (Members logic)
+    │   └── payments.js           (Payments logic)
+    ├── css\
+    │   └── style.css             (Styling)
+    └── index.html                (Entry point)
+
+================================================================================
+                          IMPORTANT NOTES
+================================================================================
+
+1. KEEP BOTH TERMINALS RUNNING
+   - Don't close either terminal while using the application
+   - If a terminal closes, restart it with the same command
+
+2. DATABASE
+   - Ensure MySQL is running before starting the backend
+   - Database: gym_db should exist with proper tables
+
+3. PORTS
+   - Backend: http://localhost:8080
+   - Frontend: http://localhost:3000
+   - Ensure both ports are available
+
+4. BROWSER CONSOLE
+   - Press F12 to open Browser Developer Tools
+   - Go to Console tab to see detailed error messages
+   - This helps with troubleshooting
+
+5. CLEARING CACHE
+   - If login page looks broken, press Ctrl+Shift+Delete to clear cache
+   - Or use incognito/private browsing mode
+
+6. MAKING CHANGES
+   - Frontend changes: Refresh browser (Ctrl+F5 for hard refresh)
+   - Backend changes: Rebuild and restart backend (mvn clean compile, then mvn spring-boot:run)
+
+================================================================================
+                          SUPPORT & HELP
+================================================================================
+
+For issues or questions:
+1. Check the browser console (F12) for error messages
+2. Check the backend terminal for logs
+3. Verify all prerequisites are installed
+4. Follow the troubleshooting guide above
+5. Ensure database is running and accessible
+
+================================================================================
+                          END OF INSTRUCTIONS
+================================================================================
